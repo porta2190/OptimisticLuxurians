@@ -253,7 +253,7 @@ function handleFormSubmit(e) {
             submitBtn.innerHTML = originalBtnText;
         }
         
-        alert("There was a problem sending your request. Please try calling us directly at (770) 555-0199 or email hello@optimisticluxurians.com");
+        alert("There was a problem sending your request. Please try calling us directly at (980) 833-3134 or email hello@optimisticluxurians.com");
     });
 }
 
