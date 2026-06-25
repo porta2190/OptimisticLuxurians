@@ -229,28 +229,20 @@ function handleFormSubmit(e) {
     // Prepare form data for Netlify
     const formData = new FormData(form);
     
-    // Ensure form-name is included (some setups need it explicitly)
-    formData.append('form-name', 'booking');
-    
     fetch("/", {
         method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(formData).toString()
+        body: formData
     })
-    .then(response => {
-        if (response.ok) {
-            // Success - reset form and show modal
-            form.reset();
-            
-            if (submitBtn) {
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = originalBtnText;
-            }
-            
-            showSuccessModal();
-        } else {
-            throw new Error('Form submission was not successful');
+    .then(() => {
+        // Netlify form submissions return 200 on success
+        form.reset();
+        
+        if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalBtnText;
         }
+        
+        showSuccessModal();
     })
     .catch((error) => {
         // Fallback if something goes wrong
