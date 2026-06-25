@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Optimistic Luxurians | Mobile Auto Detailing &amp; Pressure Washing</title>
+    <meta name="description" content="Premium mobile auto detailing and professional pressure washing. Luxury care for your vehicle and property. Serving the greater metro area.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Playfair+Display:wght@700&amp;display=swap');
+        
+        :root {
+            --gold: #C5A46E;
+        }
+        
+        body {
+            font-family: 'Inter', system_ui, sans-serif;
+        }
+        
+        .heading-serif {
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+
+        .nav-link {
+            transition: color 0.2s ease;
+        }
+        .nav-link:hover {
+            color: #C5A46E;
+        }
+
+        .section-title {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(to right, #C5A46E, #d4b48c);
+            border-radius: 3px;
+        }
+
+        .luxury-card {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+                        box-shadow 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+        }
+        
+        .luxury-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+
+        .service-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .luxury-card:hover .service-icon {
+            transform: scale(1.05);
+        }
+
+        .gallery-img {
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                        box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .gallery-img:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+        }
+
+        .hero-overlay {
+            background: linear-gradient(
+                to bottom, 
+                rgba(15, 23, 42, 0.45) 0%, 
+                rgba(15, 23, 42, 0.65) 45%, 
+                rgba(15, 23, 42, 0.75) 100%
+            );
+        }
+
+        .nav-scrolled {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.04);
+        }
+
+        .premium-btn {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .premium-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgb(197 164 110 / 0.3), 
+                       0 4px 6px -4px rgb(197 164 110 / 0.3);
+        }
+
+        .premium-btn-gold {
+            background: linear-gradient(135deg, #C5A46E, #d4b48c);
+            color: white;
+        }
+
+        .stat-number {
+            font-variant-numeric: tabular-nums;
+        }
+
+        .modal {
+            animation: modalPop 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes modalPop {
+            from {
+                opacity: 0;
+                transform: scale(0.95) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .nav-mobile {
+            animation: slideDown 0.3s ease forwards;
+        }
+
+        .price-card {
+            transition: all 0.3s ease;
+        }
+
+        .price-card.popular {
+            border-color: #C5A46E;
+            box-shadow: 0 10px 15px -3px rgb(197 164 110 / 0.15);
+            position: relative;
+        }
+
+        .price-card.popular::before {
+            content: 'MOST POPULAR';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #C5A46E;
+            color: white;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            padding: 2px 14px;
+            border-radius: 9999px;
+        }
+
+        .detail-list li {
+            position: relative;
+            padding-left: 1.65rem;
+        }
+        
+        .detail-list li:before {
+            content: "\f00c";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: #C5A46E;
+        }
+
+        .gold-accent {
+            color: #C5A46E;
+        }
+
+        .testimonial {
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+    <!-- NAV -->
+    <nav id="nav" class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-lg border-b border-slate-100 transition-all">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex justify-between items-center h-28 md:h-40">
+                <!-- Logo -->
+                <a href="#" class="flex items-center" aria-label="Optimistic Luxurians Home">
+                    <img src="images/logo.png" alt="Optimistic Luxurians" class="h-24 md:h-32 w-auto max-w-[480px] object-contain">
+                </a>
+
+                <!-- Desktop Nav -->
+                <div class="hidden md:flex items-center gap-x-5 lg:gap-x-7 text-xs lg:text-sm font-medium">
+                    <a href="#services" class="nav-link text-slate-600 hover:text-slate-900">Services</a>
+                    <a href="#packages" class="nav-link text-slate-600 hover:text-slate-900">Packages</a>
+                    <a href="#gallery" class="nav-link text-slate-600 hover:text-slate-900">Gallery</a>
+                    <a href="#about" class="nav-link text-slate-600 hover:text-slate-900">About</a>
+                    <a href="#contact" class="nav-link text-slate-600 hover:text-slate-900">Contact</a>
+                </div>
+
+                <div class="hidden md:flex items-center gap-x-3 lg:gap-x-4">
+                    <a href="tel:+17705550199" 
+                       class="flex items-center gap-x-2 text-xs lg:text-sm font-medium text-slate-700 hover:text-slate-900 transition-colors">
+                        <i class="fa-solid fa-phone text-[#C5A46E]"></i>
+                        <span>(770) 555-0199</span>
+                    </a>
+                    <button onclick="scrollToSection('contact')"
+                            class="premium-btn px-5 lg:px-6 py-2 lg:py-2.5 rounded-full bg-slate-900 hover:bg-black text-white text-xs lg:text-sm font-semibold tracking-wide">
+                        BOOK NOW
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" 
+                        class="md:hidden flex items-center justify-center w-10 h-10 text-slate-700"
+                        aria-label="Toggle menu">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <div class="px-6 py-6 flex flex-col gap-y-4 text-base font-medium">
+                <a href="#services" class="mobile-nav-link text-slate-700 py-1">Services</a>
+                <a href="#packages" class="mobile-nav-link text-slate-700 py-1">Packages</a>
+                <a href="#gallery" class="mobile-nav-link text-slate-700 py-1">Gallery</a>
+                <a href="#about" class="mobile-nav-link text-slate-700 py-1">About</a>
+                <a href="#contact" class="mobile-nav-link text-slate-700 py-1">Contact</a>
+                
+                <div class="pt-4 flex flex-col gap-y-3 border-t">
+                    <a href="tel:+17705550199" class="flex items-center gap-x-2 text-slate-800">
+                        <i class="fa-solid fa-phone text-[#C5A46E]"></i>
+                        <span>(770) 555-0199</span>
+                    </a>
+                    <button onclick="scrollToSection('contact'); closeMobileMenu();"
+                            class="premium-btn w-full px-6 py-3 rounded-full bg-slate-900 text-white text-sm font-semibold tracking-wide">
+                        BOOK NOW
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="relative pt-20 md:pt-40 h-screen min-h-[680px] flex items-center justify-center overflow-hidden bg-slate-900">
+        <div class="absolute inset-0">
+            <img src="images/2.jpg" alt="Luxury sedan with premium detailing shine" 
+                 class="w-full h-full object-cover">
+            <div class="hero-overlay absolute inset-0"></div>
+        </div>
+        
+        <div class="relative z-10 max-w-5xl px-6 text-center">
+            <div class="inline-flex items-center gap-x-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur border border-white/20 mb-6">
+                <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+                <span class="text-white/90 text-sm font-medium tracking-[1.5px] uppercase">Serving the Metro Area</span>
+            </div>
+            
+            <h1 class="text-6xl md:text-7xl leading-[1.05] font-semibold tracking-tighter text-white mb-6">
+                Premium care.<br>
+                <span class="text-[#C5A46E]">Exceptional results.</span>
+            </h1>
+            
+            <p class="max-w-2xl mx-auto text-xl md:text-2xl text-white/90 mb-10 font-light">
+                Luxury auto detailing and precision pressure washing.<br class="hidden md:block">
+                Bringing out the best in every vehicle and property we touch.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button onclick="scrollToSection('contact')"
+                        class="premium-btn px-10 py-4 rounded-2xl bg-[#C5A46E] hover:bg-[#b38f58] text-white font-semibold text-lg shadow-xl">
+                    Schedule Your Detail
+                </button>
+                <button onclick="scrollToSection('services')"
+                        class="premium-btn px-10 py-4 rounded-2xl border border-white/70 hover:bg-white/10 text-white font-semibold text-lg backdrop-blur transition-colors">
+                    Explore Services
+                </button>
+            </div>
+            
+            <div class="mt-12 flex justify-center items-center gap-x-8 text-white/70 text-sm">
+                <div class="flex items-center gap-x-2">
+                    <i class="fa-solid fa-check"></i>
+                    <span>100% Satisfaction</span>
+                </div>
+                <div class="flex items-center gap-x-2">
+                    <i class="fa-solid fa-check"></i>
+                    <span>Eco-Friendly Products</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center text-white/70">
+            <span class="text-xs tracking-[2px] mb-1.5">SCROLL TO BEGIN</span>
+            <i class="fa-solid fa-chevron-down animate-bounce"></i>
+        </div>
+    </header>
+
+    <!-- TRUST BAR -->
+    <div class="bg-white py-5 border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-wrap justify-center items-center gap-x-12 gap-y-4 text-slate-400 text-sm font-medium tracking-widest">
+                <div class="flex items-center gap-x-2">
+                    <i class="fa-solid fa-award text-[#C5A46E]"></i> 
+                    <span>5-STAR RATED</span>
+                </div>
+                <div>EST. 2019</div>
+                <div>OVER 2,800 VEHICLES RESTORED</div>
+                <div>ECO-CERTIFIED PRODUCTS</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ABOUT -->
+    <section id="about" class="max-w-5xl mx-auto px-6 pt-20 pb-16">
+        <div class="grid md:grid-cols-2 gap-x-16 gap-y-10 items-center">
+            <div>
+                <span class="uppercase tracking-[3px] text-xs font-semibold text-[#C5A46E]">Our Story</span>
+                <h2 class="text-5xl leading-[1.05] font-semibold tracking-tighter text-slate-900 mt-3 mb-6">Optimism in every detail.</h2>
+                
+                <div class="space-y-5 text-[15.5px] leading-relaxed text-slate-600">
+                    <p>
+                        Optimistic Luxurians was founded on a simple belief: your car and your property deserve to look as good as the day you fell in love with them.
+                    </p>
+                    <p>
+                        What began as a passion project detailing luxury vehicles has grown into the area's most trusted name for meticulous auto detailing and powerful, yet gentle pressure washing.
+                    </p>
+                    <p>
+                        We combine premium products, obsessive technique, and a genuinely optimistic approach to customer service.
+                    </p>
+                </div>
+                
+                <div class="mt-8 flex items-center gap-x-4">
+                    <div class="flex -space-x-2">
+                        <div class="w-9 h-9 rounded-full bg-slate-200 ring-2 ring-white overflow-hidden"><img src="images/3.jpg" class="object-cover" alt=""></div>
+                        <div class="w-9 h-9 rounded-full bg-slate-200 ring-2 ring-white overflow-hidden"><img src="images/6.jpg" class="object-cover" alt=""></div>
+                        <div class="w-9 h-9 rounded-full bg-slate-200 ring-2 ring-white overflow-hidden"><img src="images/1.jpg" class="object-cover" alt=""></div>
+                    </div>
+                    <span class="text-sm text-slate-500">Meet our detail specialists</span>
+                </div>
+            </div>
+            
+            <div class="bg-slate-900 text-white p-9 rounded-3xl">
+                <div class="grid grid-cols-2 gap-7">
+                    <div>
+                        <div class="text-4xl font-semibold tracking-tighter text-[#C5A46E]">98%</div>
+                        <div class="text-sm text-white/70 mt-1 leading-snug">of clients return<br>for repeat service</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-semibold tracking-tighter text-[#C5A46E]">4.98</div>
+                        <div class="text-sm text-white/70 mt-1 leading-snug">average rating<br>across 700+ reviews</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-semibold tracking-tighter text-[#C5A46E]">12</div>
+                        <div class="text-sm text-white/70 mt-1 leading-snug">certified detail<br>professionals</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-semibold tracking-tighter text-[#C5A46E]">6</div>
+                        <div class="text-sm text-white/70 mt-1 leading-snug">years of making<br>cars &amp; properties shine</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" class="bg-white py-16 border-y border-slate-100">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="max-w-md mb-10">
+                <span class="text-[#C5A46E] font-semibold tracking-[2px] text-sm">WHAT WE OFFER</span>
+                <h2 class="text-5xl font-semibold tracking-tighter mt-1">Services built for perfection.</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Auto Detailing -->
+                <div class="luxury-card bg-slate-50 border border-slate-100 p-9 rounded-3xl">
+                    <div class="flex items-start gap-x-5">
+                        <div class="service-icon flex-shrink-0 w-14 h-14 rounded-2xl bg-white flex items-center justify-center shadow-sm border border-slate-100">
+                            <i class="fa-solid fa-car text-3xl text-slate-900"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-3xl tracking-tight">Auto Detailing</h3>
+                            <p class="mt-2 text-slate-600 text-[15px]">Full-service restoration for your vehicle, inside and out.</p>
+                            
+                            <ul class="detail-list mt-7 space-y-[13px] text-[14.5px] text-slate-700">
+                                <li>Hand wash &amp; premium wax / sealant</li>
+                                <li>Interior deep clean &amp; sanitization</li>
+                                <li>Leather conditioning &amp; restoration</li>
+                                <li>Paint correction &amp; swirl removal</li>
+                                <li>Ceramic coating application</li>
+                                <li>Headlight restoration</li>
+                                <li>Engine bay cleaning &amp; protection</li>
+                                <li>Wheel &amp; tire detailing</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pressure Washing -->
+                <div class="luxury-card bg-slate-50 border border-slate-100 p-9 rounded-3xl">
+                    <div class="flex items-start gap-x-5">
+                        <div class="service-icon flex-shrink-0 w-14 h-14 rounded-2xl bg-white flex items-center justify-center shadow-sm border border-slate-100">
+                            <i class="fa-solid fa-spray-can text-3xl text-slate-900"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-3xl tracking-tight">Pressure Washing</h3>
+                            <p class="mt-2 text-slate-600 text-[15px]">Professional cleaning for driveways, walkways, patios and other hard surfaces.</p>
+                            
+                            <ul class="detail-list mt-7 space-y-[13px] text-[14.5px] text-slate-700">
+                                <li>Driveways &amp; walkways</li>
+                                <li>Decks, patios &amp; porches</li>
+                                <li>Garage floors &amp; parking areas</li>
+                                <li>Sidewalks &amp; entryways</li>
+                                <li>Fleet &amp; commercial vehicles</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-6 flex flex-wrap gap-3 text-sm">
+                <div class="inline-flex items-center gap-x-2 px-5 py-2 bg-emerald-50 text-emerald-700 rounded-3xl text-xs font-medium">
+                    <i class="fa-solid fa-leaf"></i>
+                    <span>Biodegradable, pet-safe &amp; plant-friendly products</span>
+                </div>
+                <div class="inline-flex items-center gap-x-2 px-5 py-2 bg-amber-50 text-amber-700 rounded-3xl text-xs font-medium">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <span>Soft-wash &amp; low-pressure options available</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PACKAGES -->
+    <section id="packages" class="max-w-7xl mx-auto px-6 py-20">
+        <div class="text-center mb-12">
+            <span class="text-[#C5A46E] tracking-[2.5px] text-xs font-semibold">TRANSPARENT PRICING</span>
+            <h2 class="mt-3 text-5xl tracking-tighter font-semibold">Packages for every need.</h2>
+            <p class="mt-3 text-lg text-slate-600 max-w-sm mx-auto">All packages include premium products and a 100% satisfaction guarantee.</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+            <!-- Detailing Packages -->
+            <div class="price-card border border-slate-200 rounded-3xl p-8 bg-white">
+                <div>
+                    <div class="text-xs uppercase font-semibold tracking-widest text-slate-500">DETAILING</div>
+                    <div class="mt-1 flex items-baseline">
+                        <span class="text-5xl font-semibold tracking-tighter">$179</span>
+                    </div>
+                    <div class="font-semibold text-xl mt-1">Essential Wash</div>
+                    <p class="text-sm text-slate-600 mt-1.5">Perfect for regular maintenance.</p>
+                </div>
+                
+                <ul class="mt-7 space-y-2.5 text-sm">
+                    <li class="flex gap-2"><i class="fa-solid fa-check text-emerald-500 mt-1"></i> <span>Exterior hand wash &amp; dry</span></li>
+                    <li class="flex gap-2"><i class="fa-solid fa-check text-emerald-500 mt-1"></i> <span>Wheel &amp; tire clean</span></li>
+                    <li class="flex gap-2"><i class="fa-solid fa-check text-emerald-500 mt-1"></i> <span>Interior vacuum &amp; wipe-down</span></li>
+                    <li class="flex gap-2"><i class="fa-solid fa-check text-emerald-500 mt-1"></i> <span>Windows &amp; mirrors</span></li>
+                </ul>
+                <button onclick="selectPackage('Essential Wash - $179')" 
+                        class="mt-8 w-full py-3 border border-slate-300 hover:bg-slate-50 text-sm font-semibold rounded-2xl transition">Select Package</button>
+            </div>
+
+            <div class="price-card popular border-2 border-[#C5A46E] rounded-3xl p-8 bg-white">
+                <div>
+                    <div class="text-xs uppercase font-semibold tracking-widest text-[#C5A46E]">DETAILING</div>
+                    <div class="mt-1 flex items-baseline">
+                        <span class="text-5xl font-semibold tracking-tighter">$329</span>
+                    </div>
+                    <div class="font-semibold text-xl mt-1">Signature Detail</div>
+                    <p class="text-sm text-slate-600 mt-1.5">Our most popular full service.</p>
+                </div>
+                
+                <ul class="mt-7 space-y-2.5 text-sm">
+                    <li class="flex gap-2"><i class="fa-solid fa-check text-emerald-500 mt-1"></i> <span>Everything in Essential</span></li>
+                    <li class="flex gap-2"><i class="fa-solid fa-check text-emerald-500 mt-1"></i> <span>Interior deep clean + shampoo</span></li>
+                    <li class="flex gap-2"><i class="fa-solid fa-check text-emerald-500 mt-1"></i> <span>Leather conditioning</span></li>
+                    <li class="flex gap-2"><i class="fa-solid fa-check text-emerald-500 mt-1"></i> <span>Clay bar + premium wax</span></li>
+                    <li class="flex gap-2"><i class="fa-solid fa-check text-emerald-500 mt-1"></i> <span>Headlight restoration</span></li>
+                </ul>
+                <button onclick="selectPackage('Signature Detail - $329')" 
+                        class="mt-8 w-full py-3 bg-[#C5A46E] hover:bg-[#b38f58] text-white text-sm font-semibold rounded-2xl transition">Select Package</button>
+            </div>
+
+            <div class="price-card border border-slate-200 rounded-3xl p-8 bg-white">
+                <div>
+                    <div class="text-xs uppercase font-semibold tracking-widest text-slate-500">DETAILING</div>
+                    <div class="mt-1 flex items-baseline">
+                        <span class="text-5xl font-semibold tracking-tighter">$549</span>
+                    </div>
+                    <div class="font-semibold text-xl mt-1">Elite Restoration</div>
+                    <p class="text-sm text-slate-600 mt-1.5">Full paint correction + ceramic.</p>
+                </div>
+                
+                <ul class="mt-7 space-y-2.5 text-sm">
+                    <li class="flex gap-2"><i class="fa-solid fa-check text-emerald-500 mt-1"></i> <span>Everything in Signature</span></li>
+                    <li class="flex gap-2"><i class="fa-solid fa-check text-emerald-500 mt-1"></i> <span>Single-stage paint correction</span></li>
+                    <li class="flex gap-2"><i class="fa-solid fa-check text-emerald-500 mt-1"></i> <span>Premium ceramic coating (1yr)</span></li>
+                    <li class="flex gap-2"><i class="fa-solid fa-check text-emerald-500 mt-1"></i> <span>Engine bay detail</span></li>
+                    <li class="flex gap-2"><i class="fa-solid fa-check text-emerald-500 mt-1"></i> <span>Interior protection film option</span></li>
+                </ul>
+                <button onclick="selectPackage('Elite Restoration - $549')" 
+                        class="mt-8 w-full py-3 border border-slate-300 hover:bg-slate-50 text-sm font-semibold rounded-2xl transition">Select Package</button>
+            </div>
+        </div>
+
+        <!-- Pressure Washing Packages -->
+        <div class="mt-10">
+            <div class="flex items-baseline gap-3 mb-4 px-1">
+                <span class="uppercase font-semibold tracking-[1.5px] text-xs text-slate-500">PRESSURE WASHING</span>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="border border-slate-200 rounded-3xl p-7 bg-white">
+                    <div class="font-semibold text-xl">Driveway Refresh</div>
+                    <div class="mt-1 flex items-end gap-1">
+                        <span class="text-4xl font-semibold tracking-tighter">$149</span>
+                        <span class="text-sm text-slate-500 mb-1">/ standard driveway</span>
+                    </div>
+                    <ul class="mt-5 text-sm space-y-[7px] text-slate-600">
+                        <li>• 2,000 sq ft concrete or pavers</li>
+                        <li>• Surface cleaner attachment</li>
+                        <li>• Eco-friendly degreaser</li>
+                    </ul>
+                    <button onclick="selectPackage('Driveway Refresh - $149')" 
+                            class="mt-6 w-full py-[13px] text-sm font-semibold rounded-2xl border border-slate-300 hover:bg-slate-50">Choose</button>
+                </div>
+                
+                <div class="border border-slate-200 rounded-3xl p-7 bg-white">
+                    <div class="font-semibold text-xl">Patio &amp; Walkway Clean</div>
+                    <div class="mt-1 flex items-end gap-1">
+                        <span class="text-4xl font-semibold tracking-tighter">$199</span>
+                        <span class="text-sm text-slate-500 mb-1">/ standard area</span>
+                    </div>
+                    <ul class="mt-5 text-sm space-y-[7px] text-slate-600">
+                        <li>• Driveway + walkways</li>
+                        <li>• Patio or deck cleaning</li>
+                        <li>• Sidewalks &amp; entry areas</li>
+                    </ul>
+                    <button onclick="selectPackage('Patio &amp; Walkway Clean - $199')" 
+                            class="mt-6 w-full py-[13px] text-sm font-semibold rounded-2xl border border-slate-300 hover:bg-slate-50">Choose</button>
+                </div>
+                
+                <div class="border border-slate-200 rounded-3xl p-7 bg-white">
+                    <div class="font-semibold text-xl">Fleet &amp; Commercial</div>
+                    <div class="mt-1">
+                        <span class="text-4xl font-semibold tracking-tighter">Custom</span>
+                    </div>
+                    <p class="text-sm text-slate-500 mt-1">Call us for fleet pricing</p>
+                    <ul class="mt-5 text-sm space-y-[7px] text-slate-600">
+                        <li>• Multi-vehicle discounts</li>
+                        <li>• Monthly &amp; quarterly contracts</li>
+                        <li>• Large driveways &amp; lots</li>
+                    </ul>
+                    <button onclick="scrollToSection('contact'); closeMobileMenu();" 
+                            class="mt-6 w-full py-[13px] text-sm font-semibold rounded-2xl bg-slate-900 text-white">Request Quote</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery" class="bg-slate-900 py-16">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex items-end justify-between mb-8">
+                <div>
+                    <span class="text-[#C5A46E] text-xs font-semibold tracking-[3px]">REAL RESULTS</span>
+                    <h2 class="text-white text-5xl tracking-tighter font-semibold">See the difference.</h2>
+                </div>
+                <a onclick="scrollToSection('contact')" href="#contact" 
+                   class="hidden md:flex items-center text-white/90 hover:text-white gap-x-2 text-sm font-medium">
+                    BOOK YOUR TRANSFORMATION <i class="fa-solid fa-arrow-right ml-1"></i>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                <img onclick="openGalleryModal(0)" src="images/2.jpg" class="gallery-img w-full aspect-[16/10] object-cover rounded-2xl" alt="Luxury sedan after premium detailing">
+                <img onclick="openGalleryModal(1)" src="images/1.jpg" class="gallery-img w-full aspect-[16/10] object-cover rounded-2xl" alt="Detailed wheel and tire">
+                <img onclick="openGalleryModal(2)" src="images/3.jpg" class="gallery-img w-full aspect-[16/10] object-cover rounded-2xl" alt="Interior leather detailing">
+                <img onclick="openGalleryModal(3)" src="images/6.jpg" class="gallery-img w-full aspect-[16/10] object-cover rounded-2xl" alt="Ceramic coating application">
+                <img onclick="openGalleryModal(4)" src="images/4.jpg" class="gallery-img w-full aspect-[16/10] object-cover rounded-2xl" alt="Freshly pressure washed driveway">
+                <img onclick="openGalleryModal(5)" src="images/5.jpg" class="gallery-img w-full aspect-[16/10] object-cover rounded-2xl" alt="Professional pressure washing of hard surfaces">
+                <img onclick="openGalleryModal(6)" src="images/7.jpg" class="gallery-img w-full aspect-[16/10] object-cover rounded-2xl" alt="Before and after detailing comparison">
+                <div onclick="scrollToSection('contact')" 
+                     class="hidden md:flex flex-col items-center justify-center bg-slate-800 hover:bg-slate-700 cursor-pointer transition-colors rounded-2xl aspect-[16/10]">
+                    <div class="text-center">
+                        <i class="fa-solid fa-plus text-[#C5A46E] text-4xl mb-3"></i>
+                        <div class="text-white font-semibold">See your vehicle here</div>
+                        <div class="text-sm text-white/60">Book your appointment</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="max-w-7xl mx-auto px-6 py-20">
+        <div class="text-center mb-11">
+            <span class="uppercase tracking-[2.5px] font-semibold text-xs text-[#C5A46E]">LOVED BY OUR CLIENTS</span>
+            <h2 class="mt-3 text-4xl font-semibold tracking-tight">Real people. Real results.</h2>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="testimonial bg-white border border-slate-100 p-8 rounded-3xl">
+                <div class="flex text-[#C5A46E] mb-5">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p class="leading-relaxed text-[15px]">"The Signature Detail on my Porsche Cayenne was next level. The paint looks wet and the interior smells incredible. Will be using Optimistic Luxurians for life."</p>
+                <div class="mt-6 flex items-center">
+                    <div class="font-medium">Michael R.</div>
+                    <div class="mx-2 text-xs text-slate-300">•</div>
+                    <div class="text-xs text-slate-500">Buckhead • Porsche Cayenne</div>
+                </div>
+            </div>
+            
+            <div class="testimonial bg-white border border-slate-100 p-8 rounded-3xl">
+                <div class="flex text-[#C5A46E] mb-5">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p class="leading-relaxed text-[15px]">"They pressure washed our long driveway and patio. The difference is night and day. Clean, professional, and they were incredibly respectful of our landscaping. Highly recommend."</p>
+                <div class="mt-6 flex items-center">
+                    <div class="font-medium">Priya &amp; David K.</div>
+                    <div class="mx-2 text-xs text-slate-300">•</div>
+                    <div class="text-xs text-slate-500">Roswell • Homeowners</div>
+                </div>
+            </div>
+            
+            <div class="testimonial bg-white border border-slate-100 p-8 rounded-3xl">
+                <div class="flex text-[#C5A46E] mb-5">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+                </div>
+                <p class="leading-relaxed text-[15px]">"The Elite Restoration package completely transformed my 2017 Audi. Swirls gone, ceramic coating looks stunning. They even fixed a few small scratches I didn't notice. Worth every penny."</p>
+                <div class="mt-6 flex items-center">
+                    <div class="font-medium">Taylor M.</div>
+                    <div class="mx-2 text-xs text-slate-300">•</div>
+                    <div class="text-xs text-slate-500">Decatur • Audi S4</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT / BOOKING -->
+    <section id="contact" class="bg-slate-900 py-16 text-white">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-10">
+                <span class="text-[#C5A46E] text-xs font-semibold tracking-[3px]">LET'S MAKE IT SHINE</span>
+                <h2 class="text-white text-5xl font-semibold tracking-tighter mt-3">Ready to get started?</h2>
+                <p class="max-w-xs mx-auto mt-3 text-white/70">Fill out the form below and we'll reach out within 2 hours to schedule your service.</p>
+            </div>
+
+            <div class="grid md:grid-cols-5 gap-x-14 gap-y-10">
+                <!-- Form -->
+                <div class="md:col-span-3">
+                    <form name="booking" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="booking-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                        <!-- Netlify form name -->
+                        <input type="hidden" name="form-name" value="booking" />
+                        
+                        <!-- Honeypot field (hidden from humans, traps spam bots) -->
+                        <div style="display:none" aria-hidden="true">
+                            <label for="bot-field">Do not fill this field</label>
+                            <input type="text" name="bot-field" id="bot-field" />
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-medium tracking-wide text-white/70 mb-1.5">FULL NAME</label>
+                                <input type="text" name="name" id="name" required class="w-full bg-white/10 border border-white/20 focus:border-[#C5A46E] placeholder:text-white/40 text-white rounded-2xl px-5 py-3 text-sm focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-medium tracking-wide text-white/70 mb-1.5">PHONE NUMBER</label>
+                                <input type="tel" name="phone" id="phone" required placeholder="(555) 123-4567" class="w-full bg-white/10 border border-white/20 focus:border-[#C5A46E] placeholder:text-white/40 text-white rounded-2xl px-5 py-3 text-sm focus:outline-none">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-medium tracking-wide text-white/70 mb-1.5">EMAIL ADDRESS</label>
+                            <input type="email" name="email" id="email" required class="w-full bg-white/10 border border-white/20 focus:border-[#C5A46E] placeholder:text-white/40 text-white rounded-2xl px-5 py-3 text-sm focus:outline-none">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-medium tracking-wide text-white/70 mb-1.5">SERVICE INTERESTED IN</label>
+                            <select name="service" id="service" required class="w-full bg-white/10 border border-white/20 focus:border-[#C5A46E] text-white rounded-2xl px-5 py-[13px] text-sm focus:outline-none appearance-none">
+                                <option value="" disabled selected>Select a service...</option>
+                                <option value="Essential Wash">Essential Wash — $179</option>
+                                <option value="Signature Detail">Signature Detail — $329</option>
+                                <option value="Elite Restoration">Elite Restoration — $549</option>
+                                <option value="Driveway Refresh">Driveway Refresh — $149</option>
+                                <option value="Patio &amp; Walkway Clean">Patio &amp; Walkway Clean — $199</option>
+                                <option value="Fleet / Custom">Fleet or Custom Quote</option>
+                                <option value="Other">Other / Not sure yet</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-medium tracking-wide text-white/70 mb-1.5">ADDITIONAL DETAILS</label>
+                            <textarea name="message" id="message" rows="3" placeholder="Vehicle year/make/model, property size, preferred dates..." class="w-full bg-white/10 border border-white/20 focus:border-[#C5A46E] placeholder:text-white/40 text-white rounded-2xl px-5 py-3 text-sm focus:outline-none resize-y"></textarea>
+                        </div>
+
+                        <button type="submit" 
+                                class="premium-btn w-full py-4 rounded-2xl bg-[#C5A46E] hover:bg-[#b38f58] text-lg font-semibold tracking-wider text-white">
+                            REQUEST APPOINTMENT
+                        </button>
+                        <p class="text-center text-xs text-white/50">We typically respond same-day. No obligation.</p>
+                    </form>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="md:col-span-2 text-white/90">
+                    <div class="space-y-8">
+                        <div>
+                            <div class="uppercase font-semibold text-xs tracking-[2px] mb-2 text-[#C5A46E]">Call or text us</div>
+                            <a href="tel:+17705550199" class="block text-3xl font-semibold tracking-tighter hover:text-[#C5A46E] transition-colors">(770) 555-0199</a>
+                        </div>
+                        
+                        <div>
+                            <div class="uppercase font-semibold text-xs tracking-[2px] mb-2 text-[#C5A46E]">Email</div>
+                            <a href="mailto:hello@optimisticluxurians.com" class="text-lg hover:text-[#C5A46E] transition-colors">hello@optimisticluxurians.com</a>
+                        </div>
+                        
+                        <div>
+                            <div class="uppercase font-semibold text-xs tracking-[2px] mb-2 text-[#C5A46E]">Service Area</div>
+                            <div class="text-white">Greater Metro Area<br>Atlanta &amp; surrounding communities</div>
+                            <div class="text-xs mt-1 text-white/50">Mobile service available</div>
+                        </div>
+                        
+                        <div class="pt-3 border-t border-white/10 text-sm">
+                            <div class="font-medium mb-1">Hours</div>
+                            <div class="space-y-px text-sm text-white/70">
+                                <div>Mon–Fri: 7:30am – 6:30pm</div>
+                                <div>Saturday: 8am – 4pm</div>
+                                <div>Sunday: By appointment</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-950 text-white/70 py-12 text-sm">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between gap-y-8">
+                <div>
+                    <div class="flex items-center gap-x-3 mb-3">
+                        <a href="#" aria-label="Optimistic Luxurians">
+                            <img src="images/logo.png" alt="Optimistic Luxurians" class="h-20 md:h-24 w-auto max-w-[420px] object-contain">
+                        </a>
+                    </div>
+                    <div class="text-xs">© 2026 Optimistic Luxurians. All rights reserved.</div>
+                </div>
+                
+                <div class="flex flex-col md:flex-row md:items-center gap-x-9 gap-y-1 text-xs md:text-sm">
+                    <a href="#" class="hover:text-white transition">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition">Service Terms</a>
+                    <a href="#" class="hover:text-white transition">Reviews</a>
+                    <div class="hidden md:block w-px h-3 bg-white/20"></div>
+                    <div class="flex gap-x-3 text-lg">
+                        <a href="#" class="hover:text-white transition"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="hover:text-white transition"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="hover:text-white transition"><i class="fa-brands fa-tiktok"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- GALLERY MODAL -->
+    <div id="gallery-modal" onclick="closeGalleryModal(event)" class="hidden fixed inset-0 z-[70] bg-black/95 flex items-center justify-center p-4">
+        <div onclick="event.stopImmediatePropagation()" class="max-w-5xl w-full relative">
+            <!-- Close -->
+            <button onclick="closeGalleryModal()" class="absolute -top-3 -right-3 md:-top-4 md:-right-4 text-white bg-black/60 hover:bg-black/80 w-10 h-10 rounded-full flex items-center justify-center text-2xl z-10">
+                &times;
+            </button>
+            
+            <img id="modal-image" class="w-full max-h-[82vh] object-contain rounded-2xl shadow-2xl" alt="Gallery preview">
+            
+            <div class="flex justify-between items-center mt-4 px-1">
+                <div class="text-white/70 text-sm" id="modal-caption"></div>
+                <div class="flex gap-2">
+                    <button onclick="prevGalleryImage()" class="px-6 py-2 rounded-full bg-white/10 text-white hover:bg-white/20 text-sm font-medium flex items-center gap-x-2">
+                        <i class="fa-solid fa-arrow-left"></i> <span class="hidden md:inline">Prev</span>
+                    </button>
+                    <button onclick="nextGalleryImage()" class="px-6 py-2 rounded-full bg-white/10 text-white hover:bg-white/20 text-sm font-medium flex items-center gap-x-2">
+                        <span class="hidden md:inline">Next</span> <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Toast / Modal -->
+    <div id="success-modal" onclick="document.getElementById('success-modal').classList.add('hidden')" 
+         class="hidden fixed inset-0 bg-black/70 z-[80] flex items-center justify-center p-6">
+        <div onclick="event.stopImmediatePropagation()" class="modal bg-white rounded-3xl max-w-md w-full p-8 text-center">
+            <div class="mx-auto w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mb-5">
+                <i class="fa-solid fa-check text-3xl"></i>
+            </div>
+            <h3 class="text-2xl tracking-tighter font-semibold">Thank you!</h3>
+            <p class="mt-2 text-slate-600">Your request has been received. One of our detail specialists will contact you within the hour to confirm your appointment.</p>
+            
+            <div class="mt-6">
+                <button onclick="closeSuccessModal()" 
+                        class="px-8 py-3 text-sm rounded-2xl font-semibold bg-slate-900 text-white w-full">RETURN TO HOME</button>
+            </div>
+            <div class="text-[10px] text-slate-400 mt-4">We look forward to serving you.</div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
