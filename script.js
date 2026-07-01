@@ -102,31 +102,43 @@ function scrollToSection(id) {
 }
 
 // Gallery data
-const galleryImages = [
-    { src: 'images/2.jpg', caption: 'Premium exterior detailing on a luxury sedan — mirror finish with perfect reflections' },
-    { src: 'images/1.jpg', caption: 'Hand-finished wheel and tire detailing — deep black sidewall and gleaming alloys' },
-    { src: 'images/3.jpg', caption: 'Interior detailing — meticulous leather cleaning and conditioning' },
-    { src: 'images/6.jpg', caption: 'Professional ceramic coating application for long-term protection' },
-    { src: 'images/4.jpg', caption: 'Driveway pressure washing — dramatic transformation on concrete' },
-    { src: 'images/5.jpg', caption: 'Pressure washing concrete surfaces and hardscapes' },
-    { src: 'images/7.jpg', caption: 'Before & After: Complete detailing transformation' }
-];
+const galleries = {
+    detailing: [
+        { src: 'images/2.jpg', caption: 'Premium exterior detailing on a luxury sedan — mirror finish with perfect reflections' },
+        { src: 'images/1.jpg', caption: 'Hand-finished wheel and tire detailing — deep black sidewall and gleaming alloys' },
+        { src: 'images/3.jpg', caption: 'Interior detailing — meticulous leather cleaning and conditioning' },
+        { src: 'images/6.jpg', caption: 'Professional ceramic coating application for long-term protection' },
+        { src: 'images/7.jpg', caption: 'Before & After: Complete detailing transformation' }
+    ],
+    'pressure-washing': [
+        { src: 'images/4.jpg', caption: 'Driveway pressure washing — dramatic transformation on concrete' },
+        { src: 'images/5.jpg', caption: 'Pressure washing concrete surfaces and hardscapes' }
+    ]
+};
 
+let currentGalleryId = 'detailing';
 let currentGalleryIndex = 0;
 
-function openGalleryModal(index) {
+function getActiveGallery() {
+    return galleries[currentGalleryId];
+}
+
+function openGalleryModal(galleryId, index) {
     const modal = document.getElementById('gallery-modal');
     const modalImage = document.getElementById('modal-image');
     const modalCaption = document.getElementById('modal-caption');
-    
+    const gallery = galleries[galleryId];
+
+    if (!gallery) return;
+
+    currentGalleryId = galleryId;
     currentGalleryIndex = index;
-    
-    modalImage.src = galleryImages[index].src;
-    modalCaption.textContent = galleryImages[index].caption;
+
+    modalImage.src = gallery[index].src;
+    modalCaption.textContent = gallery[index].caption;
     modal.classList.remove('hidden');
     modal.classList.add('flex');
-    
-    // Keyboard support
+
     document.addEventListener('keydown', handleGalleryKeydown, { once: true });
 }
 
@@ -141,33 +153,35 @@ function handleGalleryKeydown(e) {
 }
 
 function closeGalleryModal(event) {
-    // Only close if clicking the background
     if (event && event.target.id !== 'gallery-modal') return;
-    
+
     const modal = document.getElementById('gallery-modal');
     modal.classList.remove('flex');
     modal.classList.add('hidden');
 }
 
 function nextGalleryImage() {
-    currentGalleryIndex = (currentGalleryIndex + 1) % galleryImages.length;
+    const gallery = getActiveGallery();
+    currentGalleryIndex = (currentGalleryIndex + 1) % gallery.length;
     updateGalleryModal();
 }
 
 function prevGalleryImage() {
-    currentGalleryIndex = (currentGalleryIndex - 1 + galleryImages.length) % galleryImages.length;
+    const gallery = getActiveGallery();
+    currentGalleryIndex = (currentGalleryIndex - 1 + gallery.length) % gallery.length;
     updateGalleryModal();
 }
 
 function updateGalleryModal() {
     const modalImage = document.getElementById('modal-image');
     const modalCaption = document.getElementById('modal-caption');
-    
+    const gallery = getActiveGallery();
+
     modalImage.style.opacity = '0';
-    
+
     setTimeout(() => {
-        modalImage.src = galleryImages[currentGalleryIndex].src;
-        modalCaption.textContent = galleryImages[currentGalleryIndex].caption;
+        modalImage.src = gallery[currentGalleryIndex].src;
+        modalCaption.textContent = gallery[currentGalleryIndex].caption;
         modalImage.style.transition = 'opacity 0.2s ease';
         modalImage.style.opacity = '1';
     }, 80);
@@ -352,11 +366,9 @@ function initCounters() {
 
 // Preload a couple gallery images (subtle)
 function preloadGallery() {
-    galleryImages.forEach((imgData, index) => {
-        if (index < 3) { // preload first few
-            const img = new Image();
-            img.src = imgData.src;
-        }
+    Object.values(galleries).flat().slice(0, 4).forEach((imgData) => {
+        const img = new Image();
+        img.src = imgData.src;
     });
 }
 
@@ -400,5 +412,5 @@ if (document.readyState === 'loading') {
 window.OptimisticLuxurians = {
     scrollToSection,
     selectPackage,
-    openGallery: (i) => openGalleryModal(i || 0)
+    openGallery: (galleryId, i) => openGalleryModal(galleryId || 'detailing', i || 0)
 };

@@ -565,21 +565,34 @@
                 </a>
             </div>
 
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-                <img onclick="openGalleryModal(0)" src="images/2.jpg" class="gallery-img w-full aspect-[16/10] object-cover rounded-2xl" alt="Luxury sedan after premium detailing">
-                <img onclick="openGalleryModal(1)" src="images/1.jpg" class="gallery-img w-full aspect-[16/10] object-cover rounded-2xl" alt="Detailed wheel and tire">
-                <img onclick="openGalleryModal(2)" src="images/3.jpg" class="gallery-img w-full aspect-[16/10] object-cover rounded-2xl" alt="Interior leather detailing">
-                <img onclick="openGalleryModal(3)" src="images/6.jpg" class="gallery-img w-full aspect-[16/10] object-cover rounded-2xl" alt="Ceramic coating application">
-                <img onclick="openGalleryModal(4)" src="images/4.jpg" class="gallery-img w-full aspect-[16/10] object-cover rounded-2xl" alt="Freshly pressure washed driveway">
-                <img onclick="openGalleryModal(5)" src="images/5.jpg" class="gallery-img w-full aspect-[16/10] object-cover rounded-2xl" alt="Professional pressure washing of hard surfaces">
-                <img onclick="openGalleryModal(6)" src="images/7.jpg" class="gallery-img w-full aspect-[16/10] object-cover rounded-2xl" alt="Before and after detailing comparison">
-                <div onclick="scrollToSection('contact')" 
-                     class="hidden md:flex flex-col items-center justify-center bg-slate-800 hover:bg-slate-700 cursor-pointer transition-colors rounded-2xl aspect-[16/10]">
-                    <div class="text-center">
-                        <i class="fa-solid fa-plus text-[#C5A46E] text-4xl mb-3"></i>
-                        <div class="text-white font-semibold">See your vehicle here</div>
-                        <div class="text-sm text-white/60">Book your appointment</div>
+            <!-- Auto Detailing Gallery -->
+            <div class="mb-14">
+                <span class="text-[#C5A46E] text-xs font-semibold tracking-[3px]">AUTO DETAILING</span>
+                <h3 class="text-white text-2xl tracking-tight font-semibold mt-1 mb-5">Premium vehicle care.</h3>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                    <img onclick="openGalleryModal('detailing', 0)" src="images/2.jpg" class="gallery-img w-full aspect-[16/10] object-cover rounded-2xl" alt="Luxury sedan after premium detailing">
+                    <img onclick="openGalleryModal('detailing', 1)" src="images/1.jpg" class="gallery-img w-full aspect-[16/10] object-cover rounded-2xl" alt="Detailed wheel and tire">
+                    <img onclick="openGalleryModal('detailing', 2)" src="images/3.jpg" class="gallery-img w-full aspect-[16/10] object-cover rounded-2xl" alt="Interior leather detailing">
+                    <img onclick="openGalleryModal('detailing', 3)" src="images/6.jpg" class="gallery-img w-full aspect-[16/10] object-cover rounded-2xl" alt="Ceramic coating application">
+                    <img onclick="openGalleryModal('detailing', 4)" src="images/7.jpg" class="gallery-img w-full aspect-[16/10] object-cover rounded-2xl" alt="Before and after detailing comparison">
+                    <div onclick="scrollToSection('contact')" 
+                         class="hidden md:flex flex-col items-center justify-center bg-slate-800 hover:bg-slate-700 cursor-pointer transition-colors rounded-2xl aspect-[16/10]">
+                        <div class="text-center">
+                            <i class="fa-solid fa-plus text-[#C5A46E] text-4xl mb-3"></i>
+                            <div class="text-white font-semibold">See your vehicle here</div>
+                            <div class="text-sm text-white/60">Book your appointment</div>
+                        </div>
                     </div>
+                </div>
+            </div>
+
+            <!-- Pressure Washing Gallery -->
+            <div>
+                <span class="text-[#C5A46E] text-xs font-semibold tracking-[3px]">PRESSURE WASHING</span>
+                <h3 class="text-white text-2xl tracking-tight font-semibold mt-1 mb-5">Transform your property.</h3>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-3 max-w-3xl">
+                    <img onclick="openGalleryModal('pressure-washing', 0)" src="images/4.jpg" class="gallery-img w-full aspect-[16/10] object-cover rounded-2xl" alt="Freshly pressure washed driveway">
+                    <img onclick="openGalleryModal('pressure-washing', 1)" src="images/5.jpg" class="gallery-img w-full aspect-[16/10] object-cover rounded-2xl" alt="Professional pressure washing of hard surfaces">
                 </div>
             </div>
         </div>
